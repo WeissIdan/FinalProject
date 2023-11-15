@@ -19,6 +19,10 @@ namespace ViewModel
         {
             return null;
         }
+        protected override void LoadParameters(BaseEntity entity)
+        {
+            throw new NotImplementedException();
+        }
 
         public double GetSongRating(int songId)
         {
@@ -35,6 +39,38 @@ namespace ViewModel
             connection.Open(); //פתיחת תקשורת עם
             double result = double.Parse(command.ExecuteScalar().ToString());
             return result;
+        }
+
+        public int InsertAlbumR(int userId, int albumId, int rating)
+        {
+            command.CommandText = $"INSERT INTO tblAlbumRating (UserId, AlbumId, Rating) VALUES ({userId}, {albumId}, {rating})";
+            return ExecuteCRUD(); ;
+        }
+        public int UpdateAlbumR(int userId, int albumId, int rating)
+        {
+            command.CommandText = $"UPDATE tblAlbumRating SET UserId = {userId}, albumId = @{albumId}, rating = {rating} WHERE Id = @Id";
+            return ExecuteCRUD();
+        }
+        public int DeleteAlbumR(int userId, int albumId)
+        {
+            command.CommandText = $"DELETE FROM tblAlbumRating WHERE userId = @userId";
+            return ExecuteCRUD();
+        }
+
+        public int InsertSongR(int userId, int songId, int rating)
+        {
+            command.CommandText = $"INSERT INTO tblAlbumRating (UserId, AlbumId, Rating) VALUES ({userId}, {songId}, {rating})";
+            return ExecuteCRUD(); ;
+        }
+        public int UpdateSongR(int userId, int songId, int rating)
+        {
+            command.CommandText = $"UPDATE tblAlbumRating SET UserId = {userId}, albumId = {songId}, rating = {rating} WHERE Id = @Id";
+            return ExecuteCRUD();
+        }
+        public int DeleteSongR(int userId, int songId)
+        {
+            command.CommandText = $"DELETE FROM tblAlbumRating WHERE userId = @userId";
+            return ExecuteCRUD();
         }
     }
 }

@@ -45,5 +45,33 @@ namespace ViewModel
             MessagesList list = new MessagesList(ExecuteCommand());
             return list; 
         }
+
+        protected override void LoadParameters(BaseEntity entity)
+        {
+            Messages message = entity as Messages;
+            command.Parameters.Clear();
+            command.Parameters.AddWithValue("@Id", message.ID);
+            command.Parameters.AddWithValue("@ChatId", message.ChatId);
+            command.Parameters.AddWithValue("@Message", message.Message);
+        }
+
+        public int Insert(Messages message)
+        {
+            command.CommandText = "INSERT INTO tblMessage (ChatId, Message) VALUES (@ChatId, @Message)";
+            LoadParameters(message);
+            return ExecuteCRUD(); ;
+        }
+        public int Update(Messages message)
+        {
+            command.CommandText = "UPDATE tblMessage SET ChatId = @ChatId, Message = @Message WHERE Id = @Id";
+            LoadParameters(message);
+            return ExecuteCRUD();
+        }
+        public int Delete(Messages message)
+        {
+            command.CommandText = "DELETE FROM tblMessage WHERE Id = @Id";
+            LoadParameters(message);
+            return ExecuteCRUD();
+        }
     }
 }

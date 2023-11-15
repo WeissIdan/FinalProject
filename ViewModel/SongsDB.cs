@@ -38,5 +38,33 @@ namespace ViewModel
                 return null;
             return list[0];
         }
+        public int Insert(Song song)
+        {
+            command.CommandText = "INSERT INTO tblSongs (AlbumId, Lyrics, SongName) VALUES (@AlbumId, @Lyrics, @SongName)";
+            LoadParameters(song);
+            return ExecuteCRUD(); ;
+        }
+        public int Update(Song song)
+        {
+            command.CommandText = "UPDATE tblSongs SET AlbumId = @AlbumId, Lyrics = @Lyrics, SongName = @SongName WHERE Id = @Id";
+            LoadParameters(song);
+            return ExecuteCRUD();
+        }
+        public int Delete(Song song)
+        {
+            command.CommandText = "DELETE FROM tblSongs WHERE Id = @Id";
+            LoadParameters(song);
+            return ExecuteCRUD();
+        }
+
+        protected override void LoadParameters(BaseEntity entity)
+        {
+            Song song = entity as Song;
+            command.Parameters.Clear();
+            command.Parameters.AddWithValue("@Id", song.ID);
+            command.Parameters.AddWithValue("@AlbumId", song.AlbumId);
+            command.Parameters.AddWithValue("@Lyrics", song.Lyrics);
+            command.Parameters.AddWithValue("@SongName", song.SongName);
+        }
     }
 }

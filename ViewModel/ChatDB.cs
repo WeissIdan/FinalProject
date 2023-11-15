@@ -38,5 +38,33 @@ namespace ViewModel
                 return null;
             return list[0];
         }
+
+        protected override void LoadParameters(BaseEntity entity)
+        {
+            Chat chat = entity as Chat;
+            command.Parameters.Clear();
+            command.Parameters.AddWithValue("@", chat.ID);
+            command.Parameters.AddWithValue("@", chat.ChatManager);
+            command.Parameters.AddWithValue("@", chat.CreationDate);
+        }
+
+        public int Insert(Chat chat)
+        {
+            command.CommandText = "INSERT INTO tblChats (ChatManager, CreationDate) VALUES (@ChatManager, @CreationDate)";
+            LoadParameters(chat);
+            return ExecuteCRUD(); ;
+        }
+        public int Update(Chat chat)
+        {
+            command.CommandText = "UPDATE tblChats SET ChatManager = @ChatManager, CreationDate = @CreationDate WHERE Id = @Id";
+            LoadParameters(chat);
+            return ExecuteCRUD();
+        }
+        public int Delete(Chat chat)
+        {
+            command.CommandText = "DELETE FROM tblChats WHERE Id = @Id";
+            LoadParameters(chat);
+            return ExecuteCRUD();
+        }
     }
 }

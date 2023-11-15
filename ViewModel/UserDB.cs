@@ -42,5 +42,40 @@ namespace ViewModel
                 return null;
             return list[0];
         }
+
+        public int Insert(User user)
+        {
+            command.CommandText = "INSERT INTO tblUsers (Firstname, LastName, UserName, Password, Email, IsMale, AccessLevel, Birtdate) Values (@Firstname, @LastName, @UserName, @Password, @Email, @IsMale, @AccessLevel, @Birthdate)";
+            LoadParameters(user);
+            return ExecuteCRUD();
+        }
+
+        public int UpdateUserName(User user)
+        {
+            command.CommandText = "UPDATE tblUsers SET FirstName = @FirstName, LastName = @LastName, UserName = @UserName, Password = @Password, Email = @Email, IsMale = @IsMale, AccessLevel = @AccessLevel, Birthdate = @Birthdate WHERE Id = @Id";
+            LoadParameters(user);
+            return ExecuteCRUD();
+        }
+
+        public int Delete(User user)
+        {
+            command.CommandText = "DELETE FROM tblUsers WHERE Id = @Id";
+            LoadParameters(user);
+            return ExecuteCRUD();
+        }
+        protected override void LoadParameters(BaseEntity entity)
+        {
+            User user = entity as User;
+            command.Parameters.Clear();
+            command.Parameters.AddWithValue("@Id", user.ID);
+            command.Parameters.AddWithValue("@Firstname", user.FirstName);
+            command.Parameters.AddWithValue("@LastName", user.LastName);
+            command.Parameters.AddWithValue("@UserName", user.UserName);
+            command.Parameters.AddWithValue("@Password", user.Password);
+            command.Parameters.AddWithValue("@Email", user.Email);
+            command.Parameters.AddWithValue("@IsMale", user.IsMale);
+            command.Parameters.AddWithValue("@AccessLevel", user.Accesslevel);
+            command.Parameters.AddWithValue("@Birthdate", user.Birthdate);
+        } 
     }
 }
