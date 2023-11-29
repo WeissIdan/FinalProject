@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\View
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetallicaService", "MetallicaService\MetallicaService.csproj", "{E4FC8008-56DC-4CAD-930E-C77ADD18C938}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetallikcaHost", "MetallikcaHost\MetallikcaHost.csproj", "{F04C155C-99F2-4734-B4CB-AB6A92FC0734}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetallicaHost", "MetallikcaHost\MetallicaHost.csproj", "{F04C155C-99F2-4734-B4CB-AB6A92FC0734}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
