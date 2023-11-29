@@ -3,24 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Model
 {
+    [DataContract]
     public class Show : BaseEntity
     {
         private DateTime showDate;
+        [DataMember]
         public DateTime ShowDate { get { return showDate; } set { showDate = value; } }
 
         private string country;
+        [DataMember]
         public string Country { get { return country; } set { country = value; } }
 
         private string city;
+        [DataMember]
         public string City { get { return city; } set { city = value; } }
 
         private string showName;
+        [DataMember]
         public string ShowName { get { return showName; } set { showName = value; } }
 
     }
+    [CollectionDataContract]
     public class ShowList : List<Show>
     {
         public ShowList() { }

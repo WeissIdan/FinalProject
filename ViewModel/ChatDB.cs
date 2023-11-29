@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    internal class ChatDB : BaseDB
+    public class ChatDB : BaseDB
     {
         protected override BaseEntity CreateModel(BaseEntity entity)
         {

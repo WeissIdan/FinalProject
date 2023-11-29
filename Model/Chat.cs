@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Model
 {
+    [DataContract]
     public class Chat : BaseEntity
     {
         private int chatManager;
+        [DataMember]
         public int ChatManager { get { return chatManager; } set { chatManager = value; } }
 
         private DateTime creationDate;
+        [DataMember]
         public DateTime CreationDate { get { return creationDate; } set { creationDate = value; } }
 
     }
+    [CollectionDataContract]
     public class ChatList : List<Chat>
     {
         public ChatList() { }

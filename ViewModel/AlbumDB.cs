@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    internal class AlbumDB : BaseDB
+    public class AlbumDB : BaseDB
     {
         protected override BaseEntity CreateModel(BaseEntity entity)
         {

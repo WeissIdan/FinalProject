@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    internal class RatingSystemDB : BaseDB
+    public class RatingSystemDB : BaseDB
     {
         protected override BaseEntity CreateModel(BaseEntity entity)
         {
