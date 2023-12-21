@@ -49,6 +49,8 @@ namespace MetallicaService
         [OperationContract] int InsertUser(User user);
         [OperationContract] int UpdateUser(User user);
         [OperationContract] int DeleteUser(User user);
+        [OperationContract] User Login(User user);
+        [OperationContract] bool IsUserNameFree(string uname);
         //rating system
         [OperationContract] double GetSongRating(int id);
         [OperationContract] double GetAlbumRating(int id);

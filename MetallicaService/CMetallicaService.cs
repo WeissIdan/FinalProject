@@ -159,6 +159,17 @@ namespace MetallicaService
             UserDB DB = new UserDB();
             return DB.Insert(user);
         }
+        public User Login(User user)
+        {
+            UserDB DB = new UserDB();
+            return DB.Login(user);
+        }
+        public bool IsUserNameFree(string uname)
+        {
+            UserList UList = GetAllUser();
+            UserList list = new UserList(UList.FindAll(user=>user.UserName==uname));
+            return list.Count== 0;
+        }
         public int UpdateUser(User user)
         {
             UserDB DB = new UserDB();

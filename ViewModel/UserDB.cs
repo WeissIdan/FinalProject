@@ -34,6 +34,14 @@ namespace ViewModel
             UserList list = new UserList(ExecuteCommand());
             return list;
         }
+        public User Login(User user)
+        {
+            command.CommandText = $"SELECT * FROM tblUsers WHERE UserName={user.UserName} AND Pass={user.Password}";
+            UserList list = new UserList(ExecuteCommand());
+            if (list.Count == 0)
+                return null;
+            return list[0];
+        }
         public User SelectById(int id)
         {
             command.CommandText = "SELECT * FROM tblUsers WHERE Id=" + id;
