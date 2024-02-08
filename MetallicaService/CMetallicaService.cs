@@ -5,7 +5,10 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using ViewModel; 
+using System.Xml.Linq;
+using ViewModel;
+
+
 
 
 namespace MetallicaService
@@ -75,6 +78,11 @@ namespace MetallicaService
             MessagesDB DB = new MessagesDB();
             return DB.SelectById(id);
         }
+        public MessagesList GetMessagesOfChat(int chatId)
+        {
+            MessagesDB DB = new MessagesDB();
+            return DB.SelectByChatId(chatId);
+        }
         public int InsertMessage(Messages message)
         {
             MessagesDB DB = new MessagesDB();
@@ -94,8 +102,10 @@ namespace MetallicaService
 
         public ShowList GetAllShows()
         {
-            ShowsDB DB = new ShowsDB();
-            return DB.SelectAll();
+            APIcommscs api = new APIcommscs();
+            api.getAllShows();
+            ShowList shows = api.getAllShows();
+            return shows;
         }
         public Show GetShow(int id)
         {
@@ -122,6 +132,11 @@ namespace MetallicaService
         {
             SongsDB DB = new SongsDB();
             return DB.SelectAll();
+        }
+        public SongList GetAllSongsFromAlbum(int albumId)
+        {
+            SongsDB DB = new SongsDB();
+            return DB.SelectAllSongsFromAlbum(albumId);
         }
         public Song GetSong(int id)
         {
@@ -162,7 +177,12 @@ namespace MetallicaService
         public User Login(User user)
         {
             UserDB DB = new UserDB();
-            return DB.Login(user);
+            User newUser = DB.Login(user);
+            if(newUser != null && newUser.UserName == user.UserName && newUser.Password==user.Password)
+            {
+                return newUser;
+            }
+            return null;
         }
         public bool IsUserNameFree(string uname)
         {
@@ -190,6 +210,11 @@ namespace MetallicaService
         {
             RatingSystemDB DB = new RatingSystemDB();
             return DB.GetAlbumRating(id);
+        }
+        public int GetAlbumRatingByUser(int albumId, int userId)
+        {
+            RatingSystemDB DB = new RatingSystemDB();
+            return DB.GetAlbumRatingByUser(albumId, userId);
         }
         public int InsertSongRating(int userId, int songId, int rating)
         {

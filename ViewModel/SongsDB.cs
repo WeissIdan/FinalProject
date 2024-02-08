@@ -30,6 +30,12 @@ namespace ViewModel
             SongList list = new SongList(ExecuteCommand());
             return list;
         }
+        public SongList SelectAllSongsFromAlbum(int albumId)
+        {
+            command.CommandText = $"SELECT * FROM tblSongs Where (AlbumId={albumId})";
+            SongList list = new SongList(ExecuteCommand());
+            return list;
+        }
         public Song SelectById(int id)
         {
             command.CommandText = $"SELECT * FROM tblSongs WHERE Id={id}"; ;

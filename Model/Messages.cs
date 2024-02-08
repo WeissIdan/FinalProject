@@ -17,6 +17,10 @@ namespace Model
         private string message;
         [DataMember]
         public string Message { get { return message; } set { message = value; } }
+
+        private int userId;
+        [DataMember]
+        public int UserId { get { return userId; } set { userId = value; } }
     }
 
     [CollectionDataContract]

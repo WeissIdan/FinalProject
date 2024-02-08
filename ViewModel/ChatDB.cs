@@ -15,6 +15,7 @@ namespace ViewModel
             chat.ID = int.Parse(reader["Id"].ToString());
             chat.CreationDate = DateTime.Parse(reader["CreationDate"].ToString());
             chat.ChatManager = int.Parse(reader["ChatManager"].ToString());
+            chat.ChatName = reader["ChatName"].ToString();
             return chat;
         }
 
@@ -43,20 +44,21 @@ namespace ViewModel
         {
             Chat chat = entity as Chat;
             command.Parameters.Clear();
-            command.Parameters.AddWithValue("@", chat.ID);
             command.Parameters.AddWithValue("@", chat.ChatManager);
-            command.Parameters.AddWithValue("@", chat.CreationDate);
+            command.Parameters.AddWithValue("@", chat.CreationDate.ToShortDateString());
+            command.Parameters.AddWithValue("@", chat.ChatName);
+            command.Parameters.AddWithValue("@", chat.ID);
         }
 
         public int Insert(Chat chat)
         {
-            command.CommandText = "INSERT INTO tblChats (ChatManager, CreationDate) VALUES (@ChatManager, @CreationDate)";
+            command.CommandText = "INSERT INTO tblChats (ChatManager, CreationDate, ChatName) VALUES (@ChatManager, @CreationDate, @ChatName)";
             LoadParameters(chat);
             return ExecuteCRUD(); ;
         }
         public int Update(Chat chat)
         {
-            command.CommandText = "UPDATE tblChats SET ChatManager = @ChatManager, CreationDate = @CreationDate WHERE Id = @Id";
+            command.CommandText = "UPDATE tblChats SET ChatManager = @ChatManager, CreationDate = @CreationDate, ChatName = @ChatName WHERE Id = @Id";
             LoadParameters(chat);
             return ExecuteCRUD();
         }

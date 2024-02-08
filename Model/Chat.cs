@@ -18,6 +18,10 @@ namespace Model
         [DataMember]
         public DateTime CreationDate { get { return creationDate; } set { creationDate = value; } }
 
+        private string chatName;
+        [DataMember]
+        public string ChatName{get{return chatName ;} set { chatName = value; } }
+
     }
     [CollectionDataContract]
     public class ChatList : List<Chat>

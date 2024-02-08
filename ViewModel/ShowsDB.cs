@@ -70,5 +70,11 @@ namespace ViewModel
             return ExecuteCRUD();
         }
 
+        public int DeleteaLL()
+        {
+            command.CommandText = "DELETE FROM tblShows WHERE 1=1";
+            return ExecuteCRUD();
+        }
+
     }
 }

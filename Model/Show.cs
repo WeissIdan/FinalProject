@@ -26,6 +26,14 @@ namespace Model
         [DataMember]
         public string ShowName { get { return showName; } set { showName = value; } }
 
+
+        private string stadiumName;
+        [DataMember]
+        public string StadiumName { get { return stadiumName; } set { stadiumName = value; } }
+
+        private string url;
+        [DataMember]
+        public string Url { get { return url; } set { url = value; } }
     }
     [CollectionDataContract]
     public class ShowList : List<Show>

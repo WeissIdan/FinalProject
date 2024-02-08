@@ -7,13 +7,6 @@
       <FileName>AlbumDB.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ViewModel.BaseDB">
-    <Position X="7.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AIAAAAAAAAAAAApAAAABAAAAAgQAAAAAAAAAAAASEAA=</HashCode>
-      <FileName>BaseDB.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ViewModel.ChatDB">
     <Position X="11" Y="4" Width="1.5" />
     <TypeIdentifier>
@@ -52,8 +45,15 @@
   <Class Name="ViewModel.UserDB">
     <Position X="9.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAACAAAAAAAAAAAAAAAgEAAAAAAAEAAAACEAA=</HashCode>
+      <HashCode>AAAAAEAAACAAAAAAAAAAAAAAAgEAAAAAAAEQAAACEAA=</HashCode>
       <FileName>UserDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ViewModel.BaseDB">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAApAAAABAAAAAgQAEAAAAAAAAAASEAA=</HashCode>
+      <FileName>BaseDB.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

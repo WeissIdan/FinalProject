@@ -12,12 +12,17 @@ namespace ViewModel
     {
         protected override BaseEntity CreateModel(BaseEntity entity)
         {
-            return null;
+            Rating rate = entity as Rating;
+            rate.ID = 0;
+            rate._Rating = int.Parse(reader["Rating"].ToString());
+            rate.UserId = int.Parse(reader["UserId"].ToString());
+            rate.AlbumId = int.Parse(reader["AlbumId"].ToString());
+            return rate;
         }
 
         protected override BaseEntity NewEntity()
         {
-            return null;
+            return new Rating();
         }
         protected override void LoadParameters(BaseEntity entity)
         {
@@ -40,26 +45,38 @@ namespace ViewModel
             double result = double.Parse(command.ExecuteScalar().ToString());
             return result;
         }
+        public int GetAlbumRatingByUser(int AlbumId, int UserId)
+        {
+            string q = $"SELECT * FROM tblAlbumRatings WHERE (AlbumId={AlbumId} AND UserId={UserId})";
+            command.CommandText = q;
+
+            RatingList list = new RatingList(ExecuteCommand());
+            if(list.Count == 0)
+            {
+                return 0;
+            }
+            return list[0]._Rating;
+        }
 
         public int InsertAlbumR(int userId, int albumId, int rating)
         {
-            command.CommandText = $"INSERT INTO tblAlbumRating (UserId, AlbumId, Rating) VALUES ({userId}, {albumId}, {rating})";
+            command.CommandText = $"INSERT INTO tblAlbumRatings (UserId, AlbumId, Rating) VALUES ({userId}, {albumId}, {rating})";
             return ExecuteCRUD(); ;
         }
         public int UpdateAlbumR(int userId, int albumId, int rating)
         {
-            command.CommandText = $"UPDATE tblAlbumRating SET UserId = {userId}, albumId = @{albumId}, rating = {rating} WHERE Id = @Id";
+            command.CommandText = $"UPDATE tblAlbumRatings SET UserId = {userId}, albumId = @{albumId}, rating = {rating} WHERE Id = @Id";
             return ExecuteCRUD();
         }
         public int DeleteAlbumR(int userId, int albumId)
         {
-            command.CommandText = $"DELETE FROM tblAlbumRating WHERE userId = @userId";
+            command.CommandText = $"DELETE FROM tblAlbumRatings WHERE UserId = {userId} AND AlbumId = {albumId}";
             return ExecuteCRUD();
         }
 
         public int InsertSongR(int userId, int songId, int rating)
         {
-            command.CommandText = $"INSERT INTO tblAlbumRating (UserId, AlbumId, Rating) VALUES ({userId}, {songId}, {rating})";
+            command.CommandText = $"INSERT INTO tblSongRatings (UserId, AlbumId, Rating) VALUES ({userId}, {songId}, {rating})";
             return ExecuteCRUD(); ;
         }
         public int UpdateSongR(int userId, int songId, int rating)
@@ -69,7 +86,7 @@ namespace ViewModel
         }
         public int DeleteSongR(int userId, int songId)
         {
-            command.CommandText = $"DELETE FROM tblAlbumRating WHERE userId = @userId";
+            command.CommandText = $"DELETE FROM tblSongRatings WHERE userId = @userId";
             return ExecuteCRUD();
         }
     }

@@ -27,6 +27,7 @@ namespace MetallicaService
         //messages
         [OperationContract] MessagesList GetAllMessages();
         [OperationContract] Messages GetMessage(int id);
+        [OperationContract] MessagesList GetMessagesOfChat(int chatId);
         [OperationContract] int InsertMessage(Messages message);
         [OperationContract] int UpdateMessages(Messages message);
         [OperationContract] int DeleteMessages(Messages message);
@@ -40,6 +41,7 @@ namespace MetallicaService
         //songs
         [OperationContract] SongList GetAllSongs();
         [OperationContract] Song GetSong(int id);
+        [OperationContract] SongList GetAllSongsFromAlbum(int albumId);
         [OperationContract] int InsertSong(Song song);
         [OperationContract] int UpdateSong(Song song);
         [OperationContract] int DeleteSong(Song song);        
@@ -54,6 +56,7 @@ namespace MetallicaService
         //rating system
         [OperationContract] double GetSongRating(int id);
         [OperationContract] double GetAlbumRating(int id);
+        [OperationContract] int GetAlbumRatingByUser(int albumId, int userId);
         [OperationContract] int InsertSongRating(int userId, int songId, int rating);
         [OperationContract] int UpdateSongRating(int userId, int songId, int rating);
         [OperationContract] int DeleteSongRating(int userId, int songId);

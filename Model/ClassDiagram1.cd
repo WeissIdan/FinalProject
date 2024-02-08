@@ -24,7 +24,7 @@
   <Class Name="Model.Chat">
     <Position X="7.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAA=</HashCode>
+      <HashCode>QAAAIEAAACAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAA=</HashCode>
       <FileName>Chat.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -38,7 +38,7 @@
   <Class Name="Model.Messages">
     <Position X="3" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJAAAACQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAAAAAJAAAACQ=</HashCode>
       <FileName>Messages.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -70,11 +70,12 @@
       <FileName>Song.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.SongList" Collapsed="true">
+  <Class Name="Model.RatingList" Collapsed="true">
     <Position X="5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Song.cs</FileName>
+      <FileName>Rating.cs</FileName>
+      <NewMemberFileName>Song.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Model.User">

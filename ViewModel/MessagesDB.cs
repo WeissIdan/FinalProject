@@ -15,6 +15,7 @@ namespace ViewModel
             messages.ID = int.Parse(reader["Id"].ToString());
             messages.Message = reader["Message"].ToString();
             messages.ChatId = int.Parse(reader["ChatId"].ToString());
+            messages.UserId = int.Parse(reader["UserId"].ToString());
             return messages;
         }
 
@@ -50,20 +51,21 @@ namespace ViewModel
         {
             Messages message = entity as Messages;
             command.Parameters.Clear();
-            command.Parameters.AddWithValue("@Id", message.ID);
             command.Parameters.AddWithValue("@ChatId", message.ChatId);
             command.Parameters.AddWithValue("@Message", message.Message);
+            command.Parameters.AddWithValue("@UserId", message.UserId);
+            command.Parameters.AddWithValue("@Id", message.ID);
         }
 
         public int Insert(Messages message)
         {
-            command.CommandText = "INSERT INTO tblMessage (ChatId, Message) VALUES (@ChatId, @Message)";
+            command.CommandText = "INSERT INTO tblMessages (ChatId, Message, UserId) VALUES (@ChatId, @Message, @UserId)";
             LoadParameters(message);
             return ExecuteCRUD(); ;
         }
         public int Update(Messages message)
         {
-            command.CommandText = "UPDATE tblMessage SET ChatId = @ChatId, Message = @Message WHERE Id = @Id";
+            command.CommandText = "UPDATE tblMessage SET ChatId = @ChatId, Message = @Message, UserId = @UserId WHERE Id = @Id";
             LoadParameters(message);
             return ExecuteCRUD();
         }
