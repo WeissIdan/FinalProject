@@ -48,7 +48,6 @@
     <Compile Include="MessagesDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingSystemDB.cs" />
-    <Compile Include="ShowsDB.cs" />
     <Compile Include="SongsDB.cs" />
     <Compile Include="UserDB.cs" />
   </ItemGroup>

@@ -31,13 +31,10 @@ namespace MetallicaService
         [OperationContract] int InsertMessage(Messages message);
         [OperationContract] int UpdateMessages(Messages message);
         [OperationContract] int DeleteMessages(Messages message);
+        [OperationContract] int DeleteMessagesByChat(Chat chat);
 
         //Show
-        [OperationContract] ShowList GetAllShows();
-        [OperationContract] Show GetShow(int id);
-        [OperationContract] int InsertShow(Show show);
-        [OperationContract] int UpdateShow(Show show);
-        [OperationContract] int DeleteShow(Show show);        
+        [OperationContract] ShowList GetAllShows();      
         //songs
         [OperationContract] SongList GetAllSongs();
         [OperationContract] Song GetSong(int id);

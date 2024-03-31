@@ -65,14 +65,24 @@ namespace ViewModel
         }
         public int Update(Messages message)
         {
-            command.CommandText = "UPDATE tblMessage SET ChatId = @ChatId, Message = @Message, UserId = @UserId WHERE Id = @Id";
+            command.CommandText = "UPDATE tblMessages SET ChatId = @ChatId, Message = @Message, UserId = @UserId WHERE Id = @Id";
             LoadParameters(message);
             return ExecuteCRUD();
         }
         public int Delete(Messages message)
         {
-            command.CommandText = "DELETE FROM tblMessage WHERE Id = @Id";
+            command.CommandText = "DELETE FROM tblMessages WHERE Id = @Id";
             LoadParameters(message);
+            return ExecuteCRUD();
+        }        
+        public int DeleteByUser(User user)
+        {
+            command.CommandText = $"DELETE FROM tblMessages WHERE UserId = {user.ID}";
+            return ExecuteCRUD();
+        }        
+        public int DeleteByChat(Chat chat)
+        {
+            command.CommandText = $"DELETE FROM tblMessages WHERE ChatId = {chat.ID}";
             return ExecuteCRUD();
         }
     }

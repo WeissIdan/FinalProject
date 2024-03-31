@@ -98,7 +98,11 @@ namespace MetallicaService
             MessagesDB DB = new MessagesDB();
             return DB.Delete(message);
         }
-
+        public int DeleteMessagesByChat(Chat chat)
+        {
+            MessagesDB DB = new MessagesDB();
+            return DB.DeleteByChat(chat);
+        }
 
         public ShowList GetAllShows()
         {
@@ -106,26 +110,6 @@ namespace MetallicaService
             api.getAllShows();
             ShowList shows = api.getAllShows();
             return shows;
-        }
-        public Show GetShow(int id)
-        {
-            ShowsDB DB = new ShowsDB();
-            return DB.SelectById(id);
-        }
-        public int InsertShow(Show show)
-        {
-            ShowsDB DB = new ShowsDB();
-            return DB.Insert(show);
-        }
-        public int UpdateShow(Show show)
-        {
-            ShowsDB DB = new ShowsDB();
-            return DB.Update(show);
-        }
-        public int DeleteShow(Show show)
-        {
-            ShowsDB DB = new ShowsDB();
-            return DB.Delete(show);
         }
 
         public SongList GetAllSongs()
@@ -193,11 +177,20 @@ namespace MetallicaService
         public int UpdateUser(User user)
         {
             UserDB DB = new UserDB();
-            return DB.UpdateUserName(user);
+            return DB.UpdateUser(user);
         }
         public int DeleteUser(User user)
         {
             UserDB DB = new UserDB();
+            MessagesDB MDB = new MessagesDB();
+            ChatDB CDB = new ChatDB();
+            MDB.DeleteByUser(user);
+            ChatList lst = CDB.SelectByManager(user);
+            foreach (Chat chat in lst)
+            {
+                MDB.DeleteByChat(chat);
+            }
+            CDB.DeleteByUser(user);
             return DB.Delete(user);
         }
 

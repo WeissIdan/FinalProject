@@ -38,6 +38,7 @@ namespace Model
     [CollectionDataContract]
     public class ShowList : List<Show>
     {
+
         public ShowList() { }
         public ShowList(IEnumerable<Show> list) : base(list) { }
         public ShowList(IEnumerable<BaseEntity> list) : base(list.Cast<Show>().ToList()) { }

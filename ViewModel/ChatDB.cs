@@ -67,6 +67,21 @@ namespace ViewModel
             command.CommandText = "DELETE FROM tblChats WHERE Id = @Id";
             LoadParameters(chat);
             return ExecuteCRUD();
+        }        
+        public ChatList SelectByManager(User user)
+        {
+            command.CommandText = $"SELECT * FROM tblChats WHERE ChatManager = {user.ID}";
+            ChatList list = new ChatList(ExecuteCommand());
+            if (list.Count == 0)
+                return null;
+            return list;
         }
+        public int DeleteByUser(User user)
+        {
+            command.CommandText = $"DELETE FROM tblChats WHERE ChatManager = {user.ID}";
+            
+            return ExecuteCRUD();
+        }
+
     }
 }

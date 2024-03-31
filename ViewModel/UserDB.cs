@@ -59,16 +59,16 @@ namespace ViewModel
             return ExecuteCRUD();
         }
 
-        public int UpdateUserName(User user)
+        public int UpdateUser(User user)
         {
-            command.CommandText = "UPDATE tblUsers SET FirstName = @FirstName, LastName = @LastName, UserName = @UserName, Password = @Password, Email = @Email, IsMale = @IsMale, AccessLevel = @AccessLevel, Birthdate = @Birthdate WHERE Id = @Id";
+            command.CommandText = "UPDATE tblUsers SET FirstName = @Firstname, LastName = @LastName, UserName = @UserName, [Password] = @Password, Email = @Email, IsMale = @IsMale, AccessLevel = @AccessLevel, Birthdate = @Birthdate WHERE Id = @Id";
             LoadParameters(user);
             return ExecuteCRUD();
         }
 
         public int Delete(User user)
         {
-            command.CommandText = "DELETE FROM tblUsers WHERE Id = @Id";
+            command.CommandText = $"DELETE FROM tblUsers WHERE Id = {user.ID}";
             LoadParameters(user);
             return ExecuteCRUD();
         }
