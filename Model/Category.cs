@@ -18,6 +18,8 @@ namespace Model
         [DataMember]
         public string CategoryType { get { return categoryType; } set { categoryType = value; } } 
     }
+    [CollectionDataContract]
+
     public class CategoryList : List<Category>
     {
         public CategoryList() { }

@@ -10,13 +10,13 @@ namespace Model
     [DataContract]
     public class SongCategory : BaseEntity
     {
-        private Song song;
-        private Category category;
+        private int songId;
+        private int categoryId;
 
         [DataMember]
-        public Song SongName { get {return song; } set {song = value; } }
+        public int SongID { get {return songId; } set { songId = value; } }
         [DataMember]
-        public Category categoryName { get { return category; } set { category = value; } }
+        public int CategoryID { get { return categoryId; } set { categoryId = value; } }
     }
     [CollectionDataContract]
     public class SongCategoryList : List<SongCategory>

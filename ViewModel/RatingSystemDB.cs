@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,15 @@ namespace ViewModel
             rate._Rating = int.Parse(reader["Rating"].ToString());
             rate.UserId = int.Parse(reader["UserId"].ToString());
             rate.AlbumId = int.Parse(reader["AlbumId"].ToString());
+            return rate;
+        }      
+        protected BaseEntity CreateSongModel(BaseEntity entity)
+        {
+            Rating rate = entity as Rating;
+            rate.ID = 0;
+            rate._Rating = int.Parse(reader["Rating"].ToString());
+            rate.UserId = int.Parse(reader["UserId"].ToString());
+            rate.AlbumId = int.Parse(reader["SongId"].ToString());
             return rate;
         }
 
@@ -56,6 +66,18 @@ namespace ViewModel
                 return 0;
             }
             return list[0]._Rating;
+        }       
+        public int GetSongRatingByUser(int SongId, int UserId)
+        {
+            string q = $"SELECT * FROM tblSongRatings WHERE (SongId={SongId} AND UserId={UserId})";
+            command.CommandText = q;
+
+            RatingList list = new RatingList(ExecuteSongCommand());
+            if(list.Count == 0)
+            {
+                return 0;
+            }
+            return list[0]._Rating;
         }
 
         public int InsertAlbumR(int userId, int albumId, int rating)
@@ -76,7 +98,7 @@ namespace ViewModel
 
         public int InsertSongR(int userId, int songId, int rating)
         {
-            command.CommandText = $"INSERT INTO tblSongRatings (UserId, AlbumId, Rating) VALUES ({userId}, {songId}, {rating})";
+            command.CommandText = $"INSERT INTO tblSongRatings (UserId, SongId, Rating) VALUES ({userId}, {songId}, {rating})";
             return ExecuteCRUD(); ;
         }
         public int UpdateSongR(int userId, int songId, int rating)
@@ -86,8 +108,38 @@ namespace ViewModel
         }
         public int DeleteSongR(int userId, int songId)
         {
-            command.CommandText = $"DELETE FROM tblSongRatings WHERE userId = @userId";
+            command.CommandText = $"DELETE FROM tblSongRatings WHERE userId = {userId}";
             return ExecuteCRUD();
+        }
+
+
+
+
+        public List<BaseEntity> ExecuteSongCommand() //עבודה וניהול התקשורת מול המסד
+        {
+            List<BaseEntity> list = new List<BaseEntity>();
+            try
+            {
+                connection.Open(); //פתיחת תקשורת עם המסד
+                reader = command.ExecuteReader(); //ביצוע השאילתה
+                while (reader.Read()) //מעבר על כל התוצאות
+                {
+                    BaseEntity entity = NewEntity(); //יצירת עצם חדש מותאם לצורך הנוכחי
+                    list.Add(CreateSongModel(entity)); //מילוי העצם בתכונות מותאמות
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
+            return list;
         }
     }
 }

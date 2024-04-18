@@ -239,5 +239,97 @@ namespace MetallicaService
             RatingSystemDB DB = new RatingSystemDB();
             return DB.DeleteAlbumR(userId, albumId);
         }
+
+        public CategoryList GetAllCategories()
+        {
+            CategoryDB DB = new CategoryDB();
+            return DB.SelectAll();
+        }
+        public int InsertCategory(Category category)
+        {
+            CategoryDB DB = new CategoryDB();
+            return DB.Insert(category);
+        }
+
+        public int UpdateCategory(Category category)
+        {
+            CategoryDB DB = new CategoryDB();
+            return DB.Update(category);
+        }
+
+        public int DeleteCategory(Category category)
+        {
+            CategoryDB DB = new CategoryDB();
+            return DB .Delete(category);     
+        }
+
+        public SongCategoryList GetAllSongCategory()
+        {
+            SongCategoryDB DB = new SongCategoryDB();
+            return DB.SelectAll();
+        }
+
+        public int InsertSongCategory(SongCategory songCategory)
+        {
+            SongCategoryDB DB = new SongCategoryDB();
+            return DB.Insert(songCategory);
+        }
+
+        public int UpdateSongCategory(SongCategory songCategory)
+        {
+            SongCategoryDB DB = new SongCategoryDB();
+            return DB.Update(songCategory);
+        }
+
+        public int DeleteSongCategory(SongCategory songCategory)
+        {
+            SongCategoryDB DB = new SongCategoryDB();
+            return DB.Delete(songCategory);
+        }
+
+        public void TempInsertAllSongs()
+        {
+            SongList lst = GetAllSongs();
+            lst.RemoveRange(0, Math.Min(3, lst.Count));
+            foreach (Song song in lst)
+            {
+                SongCategory songCategory = new SongCategory();
+                songCategory.SongID = song.ID;
+                for (int i = 0; i < 3; i++)
+                {
+                    InsertSongCategory(songCategory);
+                }
+            }
+        }
+
+        public SongList GetSongsByCategory(Category category)
+        {
+            SongCategoryDB SCDB = new SongCategoryDB();
+            SongsDB SDB = new SongsDB();
+            SongCategoryList list = SCDB.SelectAllSongsFromCategory(category);
+            SongList SongList = new SongList();
+            Song song;
+            foreach(SongCategory songCategory in list)
+            {
+                if (songCategory.ID != 0)
+                {
+                    song = SDB.SelectById(songCategory.SongID);
+                    SongList.Add(song);
+                }
+            }
+            return SongList;
+        }
+
+        public CategoryList GetCategoryByType(Category categoryType)
+        {
+            CategoryDB DB = new CategoryDB();
+            return DB.SelectCategoryByType(categoryType);
+        }
+
+        public int GetSongRatingByUser(int SongId, int userId)
+        {
+            RatingSystemDB DB = new RatingSystemDB();
+            return DB.GetSongRatingByUser(SongId, userId);
+        }
     }
 }
