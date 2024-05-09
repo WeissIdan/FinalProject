@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="MetallicaService.CMetallicaService">
-    <Position X="2.25" Y="1.75" Width="1.5" />
+    <Position X="4.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AiAAJIBSAKAAACQECCAAQQEoAYAAAIIgEoIAQYAgIAo=</HashCode>
+      <HashCode>AiAgJIBCALIAACUEKCQAASEoAYIAAIKgUoIQCYQgIAo=</HashCode>
       <FileName>CMetallicaService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="MetallicaService.IMetallicaService">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Position X="2.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AiAAJIBSAKAAACQECCAAQQEoAYAAAIIgEoIAQYAgIAo=</HashCode>
+      <HashCode>AiAgJIBCALIAACUEKCQAASEoAYIAAIKgUoIQCYQgIAo=</HashCode>
       <FileName>IMetallicaService.cs</FileName>
     </TypeIdentifier>
   </Interface>
