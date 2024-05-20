@@ -36,12 +36,7 @@ namespace ViewModel
             SongCategoryList list = new SongCategoryList(ExecuteCommand());
             return list;
         }
-        public SongCategoryList SelectAllSongsFromCategory(Category category)
-        {
-            command.CommandText = $"SELECT * FROM tblSongCategory WHERE (Category = {category.ID})";
-            SongCategoryList list = new SongCategoryList(ExecuteCommand());
-            return list;
-        }
+
 
         public int Insert(SongCategory songCategory)
         {

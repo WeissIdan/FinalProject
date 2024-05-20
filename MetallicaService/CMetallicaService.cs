@@ -304,20 +304,9 @@ namespace MetallicaService
 
         public SongList GetSongsByCategory(Category category)
         {
-            SongCategoryDB SCDB = new SongCategoryDB();
-            SongsDB SDB = new SongsDB();
-            SongCategoryList list = SCDB.SelectAllSongsFromCategory(category);
-            SongList SongList = new SongList();
-            Song song;
-            foreach(SongCategory songCategory in list)
-            {
-                if (songCategory.SongID != 0)
-                {
-                    song = SDB.SelectById(songCategory.SongID);
-                    SongList.Add(song);
-                }
-            }
-            return SongList;
+            SongsDB SCDB = new SongsDB();
+            SongList list = SCDB.SelectAllSongsFromCategory(category);
+            return list;
         }
 
         public CategoryList GetCategoryByType(Category categoryType)

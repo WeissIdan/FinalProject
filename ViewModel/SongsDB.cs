@@ -62,7 +62,12 @@ namespace ViewModel
             LoadParameters(song);
             return ExecuteCRUD();
         }
-
+        public SongList SelectAllSongsFromCategory(Category category)
+        {
+            command.CommandText = $"SELECT tblSongs.Id, tblSongs.AlbumId, tblSongs.Lyrics, tblSongs.SongName FROM (tblSongCategory INNER JOIN tblSongs ON tblSongCategory.Song = tblSongs.Id) WHERE (tblSongCategory.Category = {category.ID}) ORDER BY tblSongs.AlbumId";
+            SongList list = new SongList(ExecuteCommand());
+            return list;
+        }
         protected override void LoadParameters(BaseEntity entity)
         {
             Song song = entity as Song;
