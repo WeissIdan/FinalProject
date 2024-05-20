@@ -14,6 +14,7 @@ namespace ViewModel
             Category category = entity as Category;
             category.CategoryName = reader["CategotyName"].ToString();
             category.CategoryType = reader["CategoryType"].ToString();
+            category.ID = int.Parse(reader["Id"].ToString());
             return category;
         }
 

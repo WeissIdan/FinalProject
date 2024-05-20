@@ -311,7 +311,7 @@ namespace MetallicaService
             Song song;
             foreach(SongCategory songCategory in list)
             {
-                if (songCategory.ID != 0)
+                if (songCategory.SongID != 0)
                 {
                     song = SDB.SelectById(songCategory.SongID);
                     SongList.Add(song);
