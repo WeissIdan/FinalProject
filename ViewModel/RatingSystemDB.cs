@@ -94,6 +94,11 @@ namespace ViewModel
         {
             command.CommandText = $"DELETE FROM tblAlbumRatings WHERE UserId = {userId} AND AlbumId = {albumId}";
             return ExecuteCRUD();
+        }        
+        public int DeleteAlbumRatingByUser(int userId)
+        {
+            command.CommandText = $"DELETE FROM tblAlbumRatings WHERE UserId = {userId}";
+            return ExecuteCRUD();
         }
 
         public int InsertSongR(int userId, int songId, int rating)
@@ -107,6 +112,11 @@ namespace ViewModel
             return ExecuteCRUD();
         }
         public int DeleteSongR(int userId, int songId)
+        {
+            command.CommandText = $"DELETE FROM tblSongRatings WHERE userId = {userId} AND SongId = {songId}";
+            return ExecuteCRUD();
+        }        
+        public int DeleteSongRatingByUser(int userId)
         {
             command.CommandText = $"DELETE FROM tblSongRatings WHERE userId = {userId}";
             return ExecuteCRUD();

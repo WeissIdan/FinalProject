@@ -44,10 +44,10 @@ namespace ViewModel
         {
             Chat chat = entity as Chat;
             command.Parameters.Clear();
-            command.Parameters.AddWithValue("@", chat.ChatManager);
-            command.Parameters.AddWithValue("@", chat.CreationDate.ToShortDateString());
-            command.Parameters.AddWithValue("@", chat.ChatName);
-            command.Parameters.AddWithValue("@", chat.ID);
+            command.Parameters.AddWithValue("@ChatManager", chat.ChatManager);
+            command.Parameters.AddWithValue("@CreationDate", chat.CreationDate.ToShortDateString());
+            command.Parameters.AddWithValue("@ChatName", chat.ChatName);
+            command.Parameters.AddWithValue("@Id", chat.ID);
         }
 
         public int Insert(Chat chat)
@@ -64,7 +64,7 @@ namespace ViewModel
         }
         public int Delete(Chat chat)
         {
-            command.CommandText = "DELETE FROM tblChats WHERE Id = @Id";
+            command.CommandText = $"DELETE FROM tblChats WHERE Id = {chat.ID}";
             LoadParameters(chat);
             return ExecuteCRUD();
         }        

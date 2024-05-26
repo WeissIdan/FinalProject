@@ -184,12 +184,18 @@ namespace MetallicaService
             UserDB DB = new UserDB();
             MessagesDB MDB = new MessagesDB();
             ChatDB CDB = new ChatDB();
+            RatingSystemDB RSDB = new RatingSystemDB();
             MDB.DeleteByUser(user);
             ChatList lst = CDB.SelectByManager(user);
-            foreach (Chat chat in lst)
+            if (lst != null)
             {
-                MDB.DeleteByChat(chat);
+                foreach (Chat chat in lst)
+                {
+                    MDB.DeleteByChat(chat);
+                }
             }
+            RSDB.DeleteAlbumRatingByUser(user.ID);
+            RSDB.DeleteSongRatingByUser(user.ID);
             CDB.DeleteByUser(user);
             return DB.Delete(user);
         }
