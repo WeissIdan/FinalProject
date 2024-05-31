@@ -326,5 +326,11 @@ namespace MetallicaService
             RatingSystemDB DB = new RatingSystemDB();
             return DB.GetSongRatingByUser(SongId, userId);
         }
+
+        public int GetLastSongId()
+        {
+            SongsDB DB = new SongsDB();
+            return DB.GetLastID();
+        }
     }
 }

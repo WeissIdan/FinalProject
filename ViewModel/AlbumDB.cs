@@ -12,10 +12,11 @@ namespace ViewModel
         protected override BaseEntity CreateModel(BaseEntity entity)
         {
             Album album = entity as Album;
-            album.ID = int.Parse(reader["Id"].ToString());
             album.AlbumName = reader["AlbumName"].ToString();
             album.ReleaseDate = DateTime.Parse(reader["ReleaseDate"].ToString());
             album.SongAmount = int.Parse(reader["SongAmount"].ToString());
+            album.ID = int.Parse(reader["Id"].ToString());
+
             return album;
         }
 
@@ -43,10 +44,11 @@ namespace ViewModel
         {
             Album album = entity as Album;
             command.Parameters.Clear();
-            command.Parameters.AddWithValue("@Id", album.ID);
             command.Parameters.AddWithValue("@AlbumName", album.AlbumName);
-            command.Parameters.AddWithValue("@ReleaseDate", album.ReleaseDate);
+            command.Parameters.AddWithValue("@ReleaseDate", album.ReleaseDate.ToShortDateString());
             command.Parameters.AddWithValue("@SongAmount", album.SongAmount);
+            command.Parameters.AddWithValue("@Id", album.ID);
+
         }
 
         public int Insert(Album album)

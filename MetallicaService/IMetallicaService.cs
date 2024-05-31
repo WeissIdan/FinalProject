@@ -41,7 +41,8 @@ namespace MetallicaService
         [OperationContract] SongList GetAllSongsFromAlbum(int albumId);
         [OperationContract] int InsertSong(Song song);
         [OperationContract] int UpdateSong(Song song);
-        [OperationContract] int DeleteSong(Song song);        
+        [OperationContract] int DeleteSong(Song song);
+        [OperationContract] int GetLastSongId();
         //users
         [OperationContract] UserList GetAllUser();
         [OperationContract] User GetUser(int id);

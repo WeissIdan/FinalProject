@@ -68,14 +68,20 @@ namespace ViewModel
             SongList list = new SongList(ExecuteCommand());
             return list;
         }
+         public int GetLastID()
+        {
+            command.CommandText = $"SELECT * FROM tblSongs WHERE Id=(SELECT max(Id) FROM tblSongs);\r\n";
+            SongList list = new SongList(ExecuteCommand());
+            return list[0].ID;
+        }
         protected override void LoadParameters(BaseEntity entity)
         {
             Song song = entity as Song;
             command.Parameters.Clear();
-            command.Parameters.AddWithValue("@Id", song.ID);
             command.Parameters.AddWithValue("@AlbumId", song.AlbumId);
             command.Parameters.AddWithValue("@Lyrics", song.Lyrics);
             command.Parameters.AddWithValue("@SongName", song.SongName);
+            command.Parameters.AddWithValue("@Id", song.ID);
         }
     }
 }
